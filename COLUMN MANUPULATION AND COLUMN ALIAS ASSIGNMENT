@@ -1,0 +1,99 @@
+Write a query to display for each player - the player_id, amount_spent_usd, and a new calculation representing the amount spent in euros, with exchange rate of 0.8.
+Allow us to elaborate, The amount_spent_usd column represents the amount of money spent by each player in USD so if the current exchange rate is 0.8, the calculation would be amount_spent_usd * 0.8.
+
+-- MYSQL 
+SELECT player_id, amount_spent_usd, amount_spent_usd * 0.8 AS 'amount_spent_euro'
+FROM players
+-- MSSQL 
+SELECT player_id, amount_spent_usd, amount_spent_usd * 0.8 AS 'amount_spent_euro'
+FROM players
+-- POSTGRES 
+SELECT player_id, amount_spent_usd, amount_spent_usd * 0.8 AS "amount_spent_euro"
+FROM players
+Write a query to display the player_id, last_name, first_name, amount_spent_usd, installed_games, and a new calculation representing the average amount spent on each game (amount_spent_usd / installed_games)
+
+-- MYSQL 
+SELECT player_id, last_name, first_name, amount_spent_usd, 
+	   installed_games, amount_spent_usd / installed_games AS 'average_amount_paid'
+FROM players
+-- MSSQL 
+SELECT player_id, last_name, first_name, amount_spent_usd, 
+	   installed_games, amount_spent_usd / installed_games AS 'average_amount_paid'
+FROM players
+-- POSTGRES 
+SELECT player_id, last_name, first_name, amount_spent_usd, 
+	   installed_games, amount_spent_usd / installed_games AS "average_amount_paid"
+FROM players
+Write a query to display for each player - the player_id, email_address, installed_games, uninstalled_games, and a new calculation representing the ratio between installed and uninstalled games (uninstalled_games / installed_games)
+
+-- MYSQL 
+SELECT player_id, email_address, installed_games, uninstalled_games,
+       uninstalled_games / installed_games AS 'installation_ratio'
+FROM  players
+-- MSSQL 
+SELECT player_id, email_address, installed_games, uninstalled_games,
+       uninstalled_games / installed_games AS 'installation_ratio'
+FROM  players
+-- POSTGRES 
+SELECT player_id, email_address, installed_games, uninstalled_games,
+       uninstalled_games / installed_games AS "installation_ratio"
+FROM  players
+Write a query to display the:
+
+a. player_id
+
+b. player's first_name concatenated with his/hers last_name
+
+-- MYSQL 
+SELECT player_id, CONCAT(first_name, ' ', last_name) AS 'full_name'
+FROM players
+-- MSSQL 
+SELECT player_id, first_name + ' ' + last_name AS 'full_name'
+FROM players
+-- POSTGRES 
+SELECT player_id, first_name || ' ' || last_name AS "full_name"
+FROM players
+Write a query to display the:
+
+a. player_id
+
+b. email_address
+
+c. country concatenated with city and street_address
+
+d. total playing time in hours (total_playing_minutes / 60)
+
+-- MYSQL 
+SELECT player_id, email_address, 
+       CONCAT(country, ' ', city, ' ', street_address) AS 'full_address',
+       total_playing_minutes / 60 AS 'total_playing_hours'
+FROM   players
+-- MSSQL 
+SELECT player_id, email_address, 
+       country + ' ' + city, ' '+ street_address AS 'full_address',
+       total_playing_minutes / 60 AS 'total_playing_hours'
+FROM   players
+-- POSTGRES 
+SELECT player_id, email_address, 
+       country || ' ' || city || ' ' || street_address AS "full_address",
+       total_playing_minutes / 60 AS "total_playing_hours"
+FROM   players
+Write a query to display the following string for each player :
+
+‘full name preferred language is preferred_language’
+
+(full name is the result of concatenating first_name and last_name)
+
+for example:
+
+'John Watson preferred language is English'
+
+-- MYSQL 
+SELECT CONCAT(first_name, ' ' ,last_name, '  preferred language is :', preferred_language) AS 'player preferred_language'
+FROM players
+-- MSSQL 
+SELECT first_name + ' ' + last_name + '  preferred language is :'+ preferred_language AS 'player preferred_language'
+FROM players
+-- POSTGRES 
+SELECT first_name || ' ' || last_name || '  preferred language is :' || preferred_language AS "player preferred_language"
+FROM players
