@@ -1,0 +1,25 @@
+Write a query to display all of the information inside players
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT * FROM players
+Write a query to retrieve the last_name, first_name and city for each player
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT last_name, first_name, city 
+FROM players
+Write a query to retrieve the email_address, country, and street_address for each player
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT email_address, country, street_address 
+FROM players
+Write a query to display the player_id, total_playing_minutes, and installed_games for each player.
+The installed_games column represents the amount of games each player has purchased/installed
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT player_id, total_playing_minutes, installed_games
+FROM players
+Write a query to display the player_id, age_group, and total_playing_minutes for each player
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT player_id, age_group, total_playing_minutes 
+FROM players
