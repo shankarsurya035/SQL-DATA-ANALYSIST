@@ -1,0 +1,164 @@
+List the number of tracks made by each artist. Sort the output by the number of tracks (Descending)
+
+--MYSQL
+SELECT artist, COUNT(*) AS 'number_of_tracks'
+FROM tracks 
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+--MSSQL
+SELECT artist, COUNT(*) AS 'number_of_tracks'
+FROM tracks 
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+--POSTGRES
+SELECT artist, COUNT(*) AS "number_of_tracks"
+FROM tracks 
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+Display the average duration of tracks by genre. Sort the output by the average duration (Descending)
+
+--MYSQL
+SELECT genre, AVG(duration) AS 'average_duraion'
+FROM tracks 
+GROUP BY genre
+ORDER BY AVG(duration) DESC
+--MSSQL
+SELECT genre, AVG(duration) AS 'average_duraion'
+FROM tracks 
+GROUP BY genre
+ORDER BY AVG(duration) DESC
+--POSTGRES
+SELECT genre, AVG(duration) AS "average_duraion"
+FROM tracks 
+GROUP BY genre
+ORDER BY AVG(duration) DESC
+Display the minimum, maximum, and average danceability of tracks made by Queen and The Beatles
+
+--MYSQL
+SELECT artist, 
+       MIN(danceability) AS 'min_danceability', 
+       MAX(danceability) AS 'max_danceability', 
+       AVG(danceability) AS 'avg_danceability'
+FROM tracks 
+WHERE artist IN ('Queen', 'The Beatles')
+GROUP BY artist
+--MSSQL
+SELECT artist, 
+       MIN(danceability) AS 'min_danceability', 
+       MAX(danceability) AS 'max_danceability', 
+       AVG(danceability) AS 'avg_danceability'
+FROM tracks 
+WHERE artist IN ('Queen', 'The Beatles')
+GROUP BY artist
+--POSTGRES
+SELECT artist, 
+       MIN(danceability) AS "min_danceability", 
+       MAX(danceability) AS "max_danceability", 
+       AVG(danceability) AS "avg_danceability"
+FROM tracks 
+WHERE artist IN ('Queen', 'The Beatles')
+GROUP BY artist
+Pop music consists of different genres, for example: Art Pop, Dance Pop, and Candy Pop are all Pop music genres.
+How many pop music genres are listed in this dataset ?
+
+--MYSQL
+SELECT COUNT(DISTINCT genre) 'unique_pop_genres'
+FROM tracks
+WHERE genre LIKE '%pop%'
+--MSSQL
+SELECT COUNT(DISTINCT genre) 'unique_pop_genres'
+FROM tracks
+WHERE genre LIKE '%pop%'
+--POSTGRES
+SELECT COUNT(DISTINCT genre) "unique_pop_genres"
+FROM tracks
+WHERE genre LIKE '%pop%'
+Display the number of tracks, highest popularity, and lowest popularity each rock music artist has achieved.
+Sort the output by the number of tracks (descending)
+
+--MYSQL
+SELECT artist, 
+       COUNT(*) AS 'number_of_tracks', 
+       MAX(popularity) AS 'highest_popularity',
+       MIN(popularity) AS 'lowest_popularity'
+FROM tracks
+WHERE genre LIKE '%rock%'
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+--MSSQL
+SELECT artist, 
+       COUNT(*) AS 'number_of_tracks', 
+       MAX(popularity) AS 'highest_popularity',
+       MIN(popularity) AS 'lowest_popularity'
+FROM tracks
+WHERE genre LIKE '%rock%'
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+--POSTGRES
+SELECT artist, 
+       COUNT(*) AS "number_of_tracks", 
+       MAX(popularity) AS "highest_popularity",
+       MIN(popularity) AS "lowest_popularity"
+FROM tracks
+WHERE genre LIKE '%rock%'
+GROUP BY artist
+ORDER BY COUNT(*) DESC
+Tracks by genre
+
+a. List the number of tracks by each genre, for tracks released during 2005-2010.
+
+b. Further restrict your result to display only genres with more than 10 tracks
+
+--   a. List the number of tracks by each genre, for tracks released during 2005-2010.
+--MYSQL
+SELECT genre, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+--MSSQL
+SELECT genre, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+--POSTGRES
+SELECT genre, COUNT(*) AS "number_of_tracks"
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+
+-- b. Further restrict your result to display only genres with more than 10 tracks
+--MYSQL
+SELECT genre, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+HAVING COUNT(*) > 10
+--MSSQL
+SELECT genre, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+HAVING COUNT(*) > 10
+--POSTGRES
+SELECT genre, COUNT(*) AS "number_of_tracks"
+FROM tracks
+WHERE release_year BETWEEN 2005 AND 2010
+GROUP BY genre
+HAVING COUNT(*) > 10
+List the number of tracks released by Coldplay each year. Sort the output by release_year (ascending)
+
+--MYSQL
+SELECT artist, release_year, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE artist = 'Coldplay'
+GROUP BY artist, release_year
+--MSSQL
+SELECT artist, release_year, COUNT(*) AS 'number_of_tracks'
+FROM tracks
+WHERE artist = 'Coldplay'
+GROUP BY artist, release_year
+--POSTGRES 
+SELECT artist, release_year, COUNT(*) AS "number_of_tracks"
+FROM tracks
+WHERE artist = 'Coldplay'
+GROUP BY artist, release_year
