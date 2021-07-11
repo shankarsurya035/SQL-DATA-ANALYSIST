@@ -1,0 +1,18 @@
+Write a query to display the distinct values inside the preferred_language column
+
+-- Applies to MySQL, MSSQL & POSTGRES 
+SELECT DISTINCT preferred_language 
+FROM players
+Write a query to display the distinct list of values inside the gender column
+
+-- Applies to MySQL, MSSQL & POSTGRES 
+SELECT DISTINCT gender FROM players
+Write a query to display the distinct list of values inside the age_group column
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT DISTINCT age_group FROM players
+Write a query to display the distinct combination of gender and age_group columns
+
+-- Applies to MySQL, MSSQL & POSTGRES
+SELECT DISTINCT gender, age_group 
+FROM players
