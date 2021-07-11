@@ -1,0 +1,173 @@
+[String Functions]
+
+a. Write a query to display the job_id, job_title, salary_estimate_min, salary_estimate_max
+
+b. Repeat your last query, only this time display only the job adverts where salary_estimate_max is less than 105,000
+
+--  a.
+-- Applies to MYSQL, MSSQL & POSTGRES
+SELECT job_id, job_title, salary_estimate_min, salary_estimate_max
+FROM jobs
+
+-- b.
+-- MYSQL
+SELECT job_id, job_title, salary_estimate_min, salary_estimate_max
+FROM jobs
+WHERE REPLACE(salary_estimate_max,'K','') < 105
+-- MSSQL
+SELECT job_id, job_title, salary_estimate_min, salary_estimate_max
+FROM jobs
+WHERE REPLACE(salary_estimate_max,'K','') < 105
+-- POSTGRES
+SELECT job_id, job_title, salary_estimate_min, salary_estimate_max
+FROM jobs
+WHERE CAST(REPLACE(salary_estimate_max,'K','') AS INT) < 105
+[String Functions]
+
+Write a query to display the company_name, company_rank, company_size_min, and company_size_max
+for companies with more than 60 employees and less than 120 employees
+
+-- MYSQL
+SELECT DISTINCT company_name, company_rank, company_size_min, company_size_max
+FROM jobs
+WHERE REPLACE(company_size_min, ' Employees', '') > 60 AND 
+      REPLACE(company_size_max, ' Employees', '') < 120
+-- MSSQL
+SELECT DISTINCT company_name, company_rank, company_size_min, company_size_max
+FROM jobs
+WHERE REPLACE(company_size_min, ' Employees', '') > 60 AND 
+      REPLACE(company_size_max, ' Employees', '') < 120
+-- POSTGRES
+SELECT DISTINCT company_name, company_rank, company_size_min, company_size_max
+FROM jobs
+WHERE CAST(REPLACE(company_size_min, ' Employees', '') AS INT) > 60 AND 
+      CAST(REPLACE(company_size_max, ' Employees', '') AS INT) < 120
+[String Functions]
+
+Write a query to display the :
+
+a. job_id
+
+b. job_title in uppercase
+
+c. company_name in lowercase
+
+-- Applies to MYSQL, MSSQL & POSTGRES
+SELECT job_id, UPPER(job_title) AS 'upper_jobtitle', LOWER(company_name) AS 'lower_companyname'
+FROM jobs
+[String Functions]
+
+Write a query to display the:
+
+a. job_id, company_name, headquarters_of_company
+
+b. first letter of company_name
+
+c. first letter of headquarters_of_company
+
+-- MYSQL
+SELECT job_id, company_name, headquarters_of_company,
+       SUBSTRING(company_name,1,1)             AS 'company_name_first_letter', 
+       SUBSTRING(headquarters_of_company, 1,1) AS 'state_of_company_first_letter'
+FROM jobs
+-- MSSQL
+SELECT job_id, company_name, headquarters_of_company,
+       SUBSTRING(company_name,1,1)             AS 'company_name_first_letter', 
+       SUBSTRING(headquarters_of_company, 1,1) AS 'state_of_company_first_letter'
+FROM jobs
+-- POSTGRES
+SELECT job_id, company_name, headquarters_of_company,
+       SUBSTRING(company_name,1,1)             AS "company_name_first_letter", 
+       SUBSTRING(headquarters_of_company, 1,1) AS "state_of_company_first_letter"
+FROM jobs
+[String Functions]
+
+Write a query to display the :
+
+a. job_id
+
+b. company_name
+
+c. headquarters_of_company
+
+d. company_code - a new column containing a concatenation of: the first letter of company_name and the first letter of headquarters_of_company
+For example : for Google located in Austin, the company_code would be: GA
+
+-- MYSQL
+SELECT job_id, company_name, headquarters_of_company,
+       CONCAT(SUBSTRING(company_name,1,1), SUBSTRING(headquarters_of_company, 1,1)) 'company_code'
+FROM   jobs
+-- MSSQL
+SELECT job_id, company_name, headquarters_of_company,
+       SUBSTRING(company_name,1,1) + SUBSTRING(headquarters_of_company, 1,1) AS 'company_code'
+FROM   jobs
+-- POSTGRES
+SELECT job_id, company_name, headquarters_of_company,
+       SUBSTRING(company_name,1,1) || SUBSTRING(headquarters_of_company, 1,1) AS "company_code"
+FROM   jobs
+[String Functions]
+
+Repeat your last query, only this time display the company_code in lowercase
+
+-- MYSQL
+SELECT job_id, company_name, headquarters_of_company,
+       LOWER(CONCAT(SUBSTRING(company_name,1,1), SUBSTRING(headquarters_of_company, 1,1))) 'company_code'
+FROM   jobs
+-- MSSQL
+SELECT job_id, company_name, headquarters_of_company,
+       LOWER(SUBSTRING(company_name,1,1) + SUBSTRING(headquarters_of_company, 1,1)) AS 'company_code'
+FROM   jobs
+-- POSTGRES
+SELECT job_id, company_name, headquarters_of_company,
+       LOWER(SUBSTRING(company_name,1,1) || SUBSTRING(headquarters_of_company, 1,1)) AS "company_code"
+FROM   jobs
+[String Functions]
+
+Write a query to display the job titles with length greater than 29
+
+-- MYSQL
+SELECT DISTINCT job_title
+FROM jobs
+WHERE LENGTH(job_title) > 29
+-- MSSQL
+SELECT DISTINCT job_title
+FROM jobs
+WHERE LEN(job_title) > 29
+-- POSTGRES
+SELECT DISTINCT job_title
+FROM jobs
+WHERE LENGTH(job_title) > 29
+[Numeric Functions]
+
+Write a query to display the:
+
+a. company_name
+
+b. company_rank
+
+c. company_market_value
+
+d. company_market_value rounded using ROUND function with precision of 2 digits
+
+e. company_market_value rounded down using FLOOR
+
+f. company_market_value rounded up using CEIL
+
+-- MYSQL
+SELECT company_name, company_rank, company_market_value,
+       ROUND(company_market_value, 2) AS 'round_mv',
+       FLOOR(company_market_value) AS 'floor_mv',
+       CEIL(company_market_value) AS 'ceil_mv'
+FROM   jobs
+-- MSSQL
+SELECT company_name, company_rank, company_market_value,
+       ROUND(company_market_value, 2) AS 'round_mv',
+       FLOOR(company_market_value) AS 'floor_mv',
+       CEILING(company_market_value) AS 'ceil_mv'
+FROM   jobs
+-- POSTGRES
+SELECT company_name, company_rank, company_market_value,
+       ROUND(company_market_value, 2) AS "round_mv",
+       FLOOR(company_market_value) AS "floor_mv",
+       CEILING(company_market_value) AS "ceil_mv"
+FROM   jobs
